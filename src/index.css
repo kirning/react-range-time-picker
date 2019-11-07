@@ -1,13 +1,64 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.range-content{
+  user-select: none;
 }
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+.range-title{
+  display: flex;
+  align-items: center;
+}
+.range-title-item-time{
+  padding-right: 10px;
+  width:100px;
+}
+.range-title-item{
+  flex:1;
+}
+.range-row{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top:10px;
+}
+.range-row-time{
+  padding-right: 10px;
+  width:100px;
+}
+.range-row-item{
+  border:1px solid blue;
+  display:flex;
+  flex:1;
+  justify-content: flex-start;
+  align-items: center;
+}
+.range-row-item{
+  border:1px solid #efefef;
+}
+/* 时间选择控件默认样式 */
+.range-item{
+  border-top:1px solid black;
+  border-bottom: 1px solid black;
+  border-right:1px solid #b3b3b3;
+  height: 20px;
+  flex:1;
+}
+.range-item:nth-child(2n){
+  height: 20px;
+  flex:1;
+}
+.range-item:first-child{
+  border-left:1px solid black;
+  height: 20px;
+  flex:1;
+}
+.range-item:last-child{
+  border-right:1px solid black;
+  height: 20px;
+  flex:1;
+}
+/* 选中的格子的样式 */
+.range-item-checked{
+  background-color:red;
+}
+/* 不可选的格子的样式 */
+.range-item-disabled{
+  background-color:#1f1f1f;
 }
