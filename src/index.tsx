@@ -11,6 +11,8 @@ const Body: React.FC = (props) => {
             startTime: moment("2019-11-10").hour(1).minute(0),
             endTime: moment("2019-11-10").hour(2).minute(30)
         },
+    ];
+    const selectedRangeList = [
         {
             startTime: moment("2019-11-9").hour(1).minute(0),
             endTime: moment("2019-11-9").hour(2).minute(30)
@@ -26,6 +28,7 @@ const Body: React.FC = (props) => {
                     dateRange={{ startTime: moment(), endTime: moment().add(3, 'day') }}
                     value={{ startTime: time.startTime, endTime: time.endTime }}
                     disabledRangeList={disabledRangeList}
+                    selectedRangeList={selectedRangeList}
                     onChange={({ startTime, endTime }) => {
                         setTime({ startTime, endTime })
                     }} />
