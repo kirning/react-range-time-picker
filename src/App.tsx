@@ -22,6 +22,8 @@ interface IProps {
   value?: IRangeTime;
   /** 当发生错误时回调，暂时没有想到怎么用 */
   onSlectedError?: (msg: string) => void;
+  /** 点击方格时回调 */
+  onItemClick?: (itemData: Moment) => void;
 }
 
 interface IItem {
@@ -35,7 +37,7 @@ interface IRow {
 }
 
 const App: React.FC<IProps> = (props) => {
-  let { dateRange, itemHeight = 30, onChange, disabledRangeList, value = { startTime: moment(), endTime: moment() }, onSlectedError, contentWidth = 800, selectedRangeList = [] } = props;
+  let { dateRange, itemHeight = 30, onItemClick, onChange, disabledRangeList, value = { startTime: moment(), endTime: moment() }, onSlectedError, contentWidth = 800, selectedRangeList = [] } = props;
   const days = dateRange.endTime.diff(dateRange.startTime, 'day');
   const titleList: number[] = [];
 
@@ -214,6 +216,14 @@ const App: React.FC<IProps> = (props) => {
                           style={{ height: itemHeight + "px" }}
                           key={"columns-" + colIndex}
                           className={columnClass}
+                          onClick={() => {
+                            if(onItemClick){
+                              const colMinute = colIndex * 30;
+                              const itemTime = row.time.clone().minute(colMinute);
+                              onItemClick(itemTime);
+                            }
+                            
+                          }}
                           onMouseDown={() => {
                             if (column.disabled || column.isSelected) {
                               return;
