@@ -56,9 +56,12 @@
 }
 /* 选中的格子的样式 */
 .range-item-checked{
-  background-color:red;
+  background-color:green;
 }
 /* 不可选的格子的样式 */
 .range-item-disabled{
   background-color:#1f1f1f;
+}
+.range-item-selected{
+  background-color:red;
 }
