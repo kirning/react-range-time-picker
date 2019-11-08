@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
-import moment from 'moment';
+import moment, { Moment } from 'moment';
 
 const Body: React.FC = (props) => {
     const disabledRangeList = [
@@ -18,7 +18,12 @@ const Body: React.FC = (props) => {
             endTime: moment("2019-11-9").hour(2).minute(30)
         }
     ];
+    const [clickTime, setClickTime] = useState<Moment | undefined>();
     const [time, setTime] = useState({ startTime: moment().hour(1).minute(0), endTime: moment().hour(3).minute(0) })
+    let clickTimeStr = "";
+    if (clickTime) {
+        clickTimeStr = clickTime.format("YYYY-MM-DD HH:mm:ss");
+    }
     return (
         <div>
             <h1>时间范围选择器Demo</h1>
@@ -29,6 +34,9 @@ const Body: React.FC = (props) => {
                     value={{ startTime: time.startTime, endTime: time.endTime }}
                     disabledRangeList={disabledRangeList}
                     selectedRangeList={selectedRangeList}
+                    onItemClick={(clickTime) => {
+                        setClickTime(clickTime);
+                    }}
                     onChange={({ startTime, endTime }) => {
                         setTime({ startTime, endTime })
                     }} />
@@ -36,6 +44,7 @@ const Body: React.FC = (props) => {
             <div>
                 <div>start:{time.startTime.format("YYYY-MM-DD HH:mm:ss")}</div>
                 <div>end:{time.endTime.format("YYYY-MM-DD HH:mm:ss")}</div>
+                <div>当前点击了:{clickTimeStr}</div>
             </div>
             <button onClick={() => {
                 setTime({ startTime: moment(), endTime: moment() })
@@ -46,7 +55,6 @@ const Body: React.FC = (props) => {
                 <li>3. 不支持跨时间断选择</li>
                 <li>4. 清空只需要把开始时间和结束时间设为一样就可以了</li>
                 <li>5. 参数看注释</li>
-
             </ul>
         </div>
     )
