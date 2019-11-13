@@ -1,5 +1,5 @@
 {
-  "name": "rangetime",
+  "name": "react-range-time-picker",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
